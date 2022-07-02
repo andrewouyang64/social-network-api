@@ -5,7 +5,7 @@ const{isEmail} = require('validator');
 const userSchema = new Schema(
   {
     username: {
-      TYPE:String,
+      type:String,
       Unique: true,
       Required: true,
       Trimmed: true,
@@ -28,8 +28,7 @@ const userSchema = new Schema(
     friend: [{type: userSchema, ref: 'user'}]
   },
   {
-    // Mongoose supports two Schema options to transform Objects after querying MongoDb: toJSON and toObject.
-    // Here we are indicating that we want virtuals to be included with our response, overriding the default behavior
+    // Schema options to transform Objects after querying MongoDb to JSON and virtuals.
     toJSON: {
       virtuals: true,
     },
@@ -37,22 +36,14 @@ const userSchema = new Schema(
   }
 );
 
-// Create a virtual property `fullName` that gets and sets the user's full name
+// Create a virtual property `friendCount` that gets the amount of friend's thought.
 userSchema
   .virtual('friendCount')
   // Getter
   .get(function () {
-    return `friendCount`;
+    return this.friendCount.length;
   })
-  // Setter to set the first and last name
-  .set(function (friend) {
-    let friendCount=0
-    if(friend){
-      friendCount+=1;
-      this.set(friendCount);
-    }
-    
-  });
+  
 
 // Initialize our User model
 const User = model('user', userSchema);
