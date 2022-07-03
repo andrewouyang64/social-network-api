@@ -33,7 +33,7 @@ thoughtSchema
   .virtual('reactionCount')
   // Getter
   .get(function () {
-    return this.reactionCount.length;
+    return this.reactions.length;
   })
   
 // Initialize our User model

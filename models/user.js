@@ -25,7 +25,7 @@ const userSchema = new Schema(
       },
     ],
 
-    friend: [{type: userSchema, ref: 'user'}]
+    friends: [{type: Schema.Types.ObjectId, ref: 'user'}]
   },
   {
     // Schema options to transform Objects after querying MongoDb to JSON and virtuals.
@@ -41,7 +41,7 @@ userSchema
   .virtual('friendCount')
   // Getter
   .get(function () {
-    return this.friendCount.length;
+    return this.friends.length;
   })
   
 

@@ -35,5 +35,17 @@ module.exports = {
       .then(() => res.json({ message: 'User and associated apps deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
-};
 
+
+// Update a user
+updateUser(req, res) {
+  User.findOneAndUpdate({ _id: req.params.userId })
+    .then((user) =>
+      !user
+        ? res.status(404).json({ message: 'No user with that ID' })
+        : Application.deleteMany({ _id: { $in: user.applications } })
+    )
+    .then(() => res.json({ message: 'User updated!' }))
+    .catch((err) => res.status(500).json(err));
+},
+};
