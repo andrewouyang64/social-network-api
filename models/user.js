@@ -1,24 +1,25 @@
 const { Schema, model } = require('mongoose');
-//const{isEmail} = require('validator');
+const{isEmail} = require('validator');
 
 // Schema to create User model
 const userSchema = new Schema(
   {
-    first: String,
-    last: String,
-      // Unique: true,
-      // Required: true,
-      // Trimmed: true,
-    //},
-    // email: {
-    //   type: String,
-    //   Unique: true,
-    //   Required: true,
-    //   validate: isEmail,
+    username: {
+      type: String,
+      Unique: true,
+      Required: true,
+      Trimmed: true
+    },
 
-    // },
+    email: {
+      type: String,
+      Unique: true,
+      Required: true,
+      Validate: isEmail
+
+    },
     
-    thought: [
+    thoughts: [
       {
         type: Schema.Types.ObjectId,
         ref: 'thought',
@@ -36,7 +37,7 @@ const userSchema = new Schema(
   }
 );
 
-// Create a virtual property `friendCount` that gets the amount of friend's thought.
+// Create a virtual property `friendCount` that gets the number of friend's thought.
 userSchema
   .virtual('friendCount')
   // Getter

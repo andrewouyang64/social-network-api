@@ -62,7 +62,7 @@ addFriend(req, res) {
     .catch((err) => res.status(500).json(err));
 },
 // Deletes a friend with user id. Then updates the friends array associated with.
-removeReaction(req, res) {
+deleteFriend(req, res) {
   User.findOneAndUpdate(
     { _id: req.params.userId },
     { $pull: { friends: { friendId: req.params.friendId } } },

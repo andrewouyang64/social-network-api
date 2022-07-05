@@ -1,59 +1,28 @@
-const names = [
-    'Aaran',
-    'Aaren',
-    'Aarez',
-    'Aarman',
-    'Aaron',
-    'Aaron-James',
-    'Aarron',
-    'Aaryan',
-    'Aaryn',
-    'Aayan',
-    'Aazaan',
-    'Abaan',
-    'Abbas',
-    'Abdallah',
-    'Abdalroof',
-    'Abdihakim',
-    'Abdirahman',
-    'Abdisalam',
-    'Abdul',
-    'Abdul-Aziz',
-    'Abdulbasir',
-    'Abdulkadir',
-    'Abdulkarem',
-    'Ze',
-    'Zechariah',
-    'Zeek',
-    'Zeeshan',
-    'Zeid',
-    'Zein',
-    'Zen',
-    'Zendel',
-    'Zenith',
-    'Zennon',
-    'Zeph',
-    'Zerah',
-    'Zhen',
-    'Zhi',
-    'Zhong',
-    'Zhuo',
-    'Zi',
-    'Zidane',
-    'Zijie',
-    'Zinedine',
-    'Zion',
-    'Zishan',
-    'Ziya',
-    'Ziyaan',
-    'Zohaib',
-    'Zohair',
-    'Zoubaeir',
-    'Zubair',
-    'Zubayr',
-    'Zuriel',
-    ``,
-  ];
+const usersData = [
+  { username:'Abdallah', 
+  email: 'Abdallah@hotmail.com'},
+  { username: 'David', 
+  email: 'david@hotmail.com'},
+  { username: 'John', 
+  email: 'John@hotmail.com'},
+  { username: 'Jessica', 
+  email: 'jassica@hotmail.com'},
+  { username: 'Debbie', 
+  email: 'debbie@hotmail.com'},
+  { username: 'Christine', 
+  email: 'christine@hotmail.com'},
+  { username: 'Jenny', 
+  email: 'jenny@hotmail.com'},
+  { username: 'Robert', 
+  email: 'robert@hotmail.com'},
+  { username: 'Andrew', 
+  email: 'andrew@hotmail.com'},
+  { username: 'Kent', 
+  email: 'kent@hotmail.com'},
+  { username: 'Tom', 
+  email: 'tom@hotmail.com'}  
+];
+
   
   const thoughts = [
     'Your post is funny',
@@ -79,44 +48,43 @@ const names = [
     'Reply: The side effects of in app purchases on digital marketplaces',
   ];
   
-  const users = [];
-  
+ 
   // Get a random item given an array
   const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
   
   // Gets a random full name
-  const getRandomNames = () =>
-    `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
+  //const getRandomNameAndEmail = () =>
+    //`${getRandomArrItem(names[username])} ${getRandomArrItem(names[email])}`;
   
   // Function to generate random thoughts that we can add to the database. Includes firend's reactions.
   const getRandomThoughts = (int) => {
     let results = [];
     for (let i = 0; i < int; i++) {
       results.push({
-        //published: Math.random() < 0.5,
+       
         thoughtBody: getRandomArrItem(thoughts),
         //advertiserFriendly: Math.random() < 0.5,
-        reactions: [...getRandomReactions(3)],
+        //reactions: [...getRandomReactions(3)],
       });
     }
     return results;
   };
   
   // Create the reactions that will be added to each thought
-  const getRandomReactions = (int) => {
-    if (int === 1) {
-      return getRandomArrItem(reactions);
-    }
-    let results = [];
-    for (let i = 0; i < int; i++) {
-      results.push({
-        reactionBody: getRandomArrItem(reactions),
-        username: getRandomNames(),
-      });
-    }
-    return results;
-  };
+  // const getRandomReactions = (int) => {
+  //   if (int === 1) {
+  //     return getRandomArrItem(reactions);
+  //   }
+  //   let results = [];
+  //   for (let i = 0; i < int; i++) {
+  //     results.push({
+  //       reactionBody: getRandomArrItem(reactions),
+  //       username: usersData[i].username,
+  //     });
+  //   }
+  //   return results;
+  // };
   
   // Export the functions for use in seed.js
-  module.exports = { getRandomNames, getRandomThoughts, getRandomReactions };
+  module.exports = { usersData, getRandomThoughts};
   

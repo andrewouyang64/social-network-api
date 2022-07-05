@@ -1,3 +1,5 @@
 ## Social Network API
 
-Codes for CRUD with MongoDb testing under insomnia
+A sample RESTful API using Node, Express, and MongoDb tested under insomnia.
+
+Demo video link:
