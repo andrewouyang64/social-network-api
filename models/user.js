@@ -4,12 +4,12 @@ const { Schema, model } = require('mongoose');
 // Schema to create User model
 const userSchema = new Schema(
   {
-    username: {
-      type:String,
-      Unique: true,
-      Required: true,
-      Trimmed: true,
-    },
+    first: String,
+    last: String,
+      // Unique: true,
+      // Required: true,
+      // Trimmed: true,
+    //},
     // email: {
     //   type: String,
     //   Unique: true,

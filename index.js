@@ -8,9 +8,9 @@ const PORT = 3001;
 const app = express();
 
 
-const activity = cwd.includes('01-Activities')
-  ? cwd.split('/01-Activities/')[1]
-  : cwd;
+ const activity = cwd.includes('01-Activities')
+    ? cwd.split('/01-Activities/')[1]
+    : cwd;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

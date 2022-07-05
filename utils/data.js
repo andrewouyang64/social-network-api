@@ -96,7 +96,7 @@ const names = [
         //published: Math.random() < 0.5,
         thoughtBody: getRandomArrItem(thoughts),
         //advertiserFriendly: Math.random() < 0.5,
-        reactions: [...getThoughtReactions(3)],
+        reactions: [...getRandomReactions(3)],
       });
     }
     return results;
