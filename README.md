@@ -2,4 +2,4 @@
 
 A sample RESTful API using Node, Express, and MongoDb tested under insomnia.
 
-Demo video link:
+Demo video link:https://watch.screencastify.com/v/eBmPutbuQ8zFx6Wm9sZn

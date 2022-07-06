@@ -46,45 +46,73 @@ const usersData = [
     'Please check out my response',
     'Like and subscribe to my channel please',
     'Reply: The side effects of in app purchases on digital marketplaces',
+    'Awesome ideas',
+    'Sounds like a good plan to me',
+    'We all should not take it for granted'
   ];
   
  
-  // Get a random item given an array
+  // Get a random item / index from given an array
   const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  const genRandomIndex = (arr) => Math.floor(Math.random() * arr.length);
   
-  // Gets a random full name
-  //const getRandomNameAndEmail = () =>
-    //`${getRandomArrItem(names[username])} ${getRandomArrItem(names[email])}`;
-  
+
   // Function to generate random thoughts that we can add to the database. Includes firend's reactions.
   const getRandomThoughts = (int) => {
     let results = [];
     for (let i = 0; i < int; i++) {
+      
       results.push({
        
-        thoughtBody: getRandomArrItem(thoughts),
-        //advertiserFriendly: Math.random() < 0.5,
-        //reactions: [...getRandomReactions(3)],
+        thoughtText: getRandomArrItem(thoughts),
+        reactions: [...getRandomReactions(2)],
+        username: getRandomArrItem(usersData).username
       });
     }
     return results;
   };
   
-  // Create the reactions that will be added to each thought
-  // const getRandomReactions = (int) => {
-  //   if (int === 1) {
-  //     return getRandomArrItem(reactions);
-  //   }
-  //   let results = [];
-  //   for (let i = 0; i < int; i++) {
-  //     results.push({
-  //       reactionBody: getRandomArrItem(reactions),
-  //       username: usersData[i].username,
-  //     });
-  //   }
-  //   return results;
-  // };
-  
+  //Create the reactions that will be added to each thought
+   const getRandomReactions = (index1) => {
+    //  if (int === 1) {
+    //    return getRandomArrItem(reactions);
+    //  }
+     let results = [];
+     for (let i = 0; i < index1; i++) {
+     
+       results.push({
+         reactionBody: getRandomArrItem(reactions),
+         username: getRandomArrItem(usersData).username,
+       });
+     }
+     return results;
+   };
+
+  const thoughtsArr = getRandomThoughts(6);
+
+
+  // Get user array
+  const getUser = (num) => {
+    let results = [];
+    for (let i = 0; i < num; i++) {
+    const index = genRandomIndex(usersData);
+    const username = usersData[index].username;
+    const email = usersData[index].email;
+     results.push({
+                username,
+                email,
+                thoughts:[],
+                friends: []
+                //thoughts: [getRandomArrItem(thoughtsArr)._id],
+                //friends: [getRandomArrItem(usersData).username._id]
+              });
+          }
+        return results  
+    };
+
+  const usersArr = getUser(6);
+  console.log('My log is ==================' + usersArr[0].thoughts)
+
   // Export the functions for use in seed.js
-  module.exports = { usersData, getRandomThoughts};
+  module.exports = { usersArr, thoughtsArr};
   

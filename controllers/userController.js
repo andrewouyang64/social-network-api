@@ -10,7 +10,8 @@ module.exports = {
   // Get a single user
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
-      .then((user) =>
+        .populate({ path: 'thoughts', select: '-__v' })
+        .then((user) =>
         !user
           ? res.status(404).json({ message: 'No user found with this ID' })
           : res.json(user)
@@ -38,7 +39,10 @@ module.exports = {
 
 // Update a user
 updateUser(req, res) {
-  User.findOneAndUpdate({ _id: req.params.userId })
+  User.findOneAndUpdate(
+    { _id: req.params.userId },
+    {  new: true }
+    )
     .then((user) =>
       !user?
         res.status(404).json({ message: 'No user found with this ID' })
@@ -51,14 +55,15 @@ updateUser(req, res) {
 addFriend(req, res) {
   User.findOneAndUpdate(
     { _id: req.params.userId },
-    { $addToSet: { friends: req.body } },
-    { runValidators: true, new: true }
+    { $addToSet: { friends: req.body.friendId } },
+    { new: true }
   )
     .then((user) =>
       !user
         ? res.status(404).json({ message: 'No user found with this id!' })
         : res.json(user)
     )
+    
     .catch((err) => res.status(500).json(err));
 },
 // Deletes a friend with user id. Then updates the friends array associated with.
@@ -66,7 +71,7 @@ deleteFriend(req, res) {
   User.findOneAndUpdate(
     { _id: req.params.userId },
     { $pull: { friends: { friendId: req.params.friendId } } },
-    { runValidators: true, new: true }
+    { new: true }
   )
     .then((user) =>
       !user
